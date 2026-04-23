@@ -18,9 +18,9 @@ export function AboutSection() {
   return (
     <section id="about" className="relative min-h-screen py-24 px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Left: 3D Tech Orbit */}
+        {/* Left: 3D Tech Orbit - hidden on mobile */}
         <motion.div
-          className="h-[400px] w-full"
+          className="h-[400px] w-full hidden md:block"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -31,6 +31,20 @@ export function AboutSection() {
             <pointLight position={[5, 5, 5]} intensity={0.5} />
             <TechOrbit />
           </Scene>
+        </motion.div>
+
+        {/* Mobile: simple badge grid instead of 3D orbit */}
+        <motion.div
+          className="md:hidden mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex flex-wrap gap-2 justify-center">
+            {['JS', 'TS', 'PHP', 'Dart', 'NestJS', 'Laravel', 'Next.js', 'React', 'Vue', 'Flutter', 'PostgreSQL', 'Docker'].map((tech) => (
+              <Badge key={tech}>{tech}</Badge>
+            ))}
+          </div>
         </motion.div>
 
         {/* Right: About content */}

@@ -19,14 +19,17 @@ const FloatingShapes = dynamic(
 export function HeroSection() {
   return (
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* 3D Background */}
-      <div className="absolute inset-0">
+      {/* 3D Background - hidden on mobile */}
+      <div className="absolute inset-0 hidden md:block">
         <Scene>
           <ambientLight intensity={0.2} />
           <ParticleField count={800} />
           <FloatingShapes />
         </Scene>
       </div>
+
+      {/* Mobile gradient fallback */}
+      <div className="absolute inset-0 md:hidden bg-gradient-to-br from-[#0a0a1a] via-[#0a1628] to-[#1a0a2e]" />
 
       {/* Content overlay */}
       <div className="relative z-10 text-center px-6">
