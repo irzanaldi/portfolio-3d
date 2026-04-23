@@ -25,14 +25,34 @@ export const metadata: Metadata = {
   title: 'Irzan Aldi Ananto — Fullstack Developer',
   description:
     'Fullstack Developer with 3+ years experience building web apps and APIs for retail and e-commerce platforms. NestJS, Next.js, Flutter, Laravel.',
+  keywords: [
+    'Fullstack Developer',
+    'NestJS',
+    'Next.js',
+    'Flutter',
+    'Laravel',
+    'React',
+    'TypeScript',
+    'Portfolio',
+  ],
+  authors: [{ name: 'Irzan Aldi Ananto' }],
   openGraph: {
     title: 'Irzan Aldi Ananto — Fullstack Developer',
     description:
       'Fullstack Developer with 3+ years experience building web apps and APIs for retail and e-commerce platforms.',
     url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: 'Irzan Aldi Ananto',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Irzan Aldi Ananto — Fullstack Developer',
+    description:
+      'Fullstack Developer with 3+ years experience building web apps and APIs.',
+    images: ['/og-image.png'],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
