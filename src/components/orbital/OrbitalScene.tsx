@@ -1,6 +1,6 @@
 'use client';
 import { Suspense, useMemo } from 'react';
-import { Stars } from '@react-three/drei';
+import { Stars, Sparkles } from '@react-three/drei';
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 import { CenterNode } from './CenterNode';
 import { OrbitRing } from './OrbitRing';
@@ -70,12 +70,13 @@ export function OrbitalScene({
 
   return (
     <>
-      <color attach="background" args={['#05060a']} />
-      <fog attach="fog" args={['#05060a', 14, 32]} />
-      <ambientLight intensity={0.4} />
-      <pointLight position={[8, 8, 8]} intensity={60} color="#22d3ee" />
-      <pointLight position={[-8, -4, -8]} intensity={40} color="#e879f9" />
-      <Stars radius={60} depth={40} count={2500} factor={3} fade speed={0.5} />
+      <fog attach="fog" args={['#05060a', 18, 40]} />
+      <ambientLight intensity={0.35} />
+      <pointLight position={[8, 8, 8]} intensity={80} color="#22d3ee" />
+      <pointLight position={[-8, -4, -8]} intensity={55} color="#e879f9" />
+      <pointLight position={[0, 10, -6]} intensity={45} color="#a78bfa" />
+      <Stars radius={80} depth={50} count={3500} factor={3.2} fade speed={0.4} />
+      <Sparkles count={70} scale={22} size={2.2} speed={0.25} opacity={0.5} color="#9fe8ff" />
 
       <Suspense fallback={<Loader />}>
         <CenterNode />
@@ -91,8 +92,8 @@ export function OrbitalScene({
         ))}
         <ConnectionLines segments={segments} color={colorForKind('project')} />
         <EffectComposer>
-          <Bloom intensity={0.7} luminanceThreshold={0.2} luminanceSmoothing={0.9} mipmapBlur />
-          <Vignette eskil={false} offset={0.3} darkness={0.7} />
+          <Bloom intensity={1.15} luminanceThreshold={0.12} luminanceSmoothing={0.85} mipmapBlur radius={0.75} />
+          <Vignette eskil={false} offset={0.25} darkness={0.55} />
         </EffectComposer>
       </Suspense>
 

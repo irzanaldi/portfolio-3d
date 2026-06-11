@@ -28,6 +28,7 @@ export function OrbitNode({ node, position, color, active, onSelect }: OrbitNode
     <group position={position}>
       <mesh
         ref={ref}
+        scale={0.01}
         onPointerOver={(e) => {
           e.stopPropagation();
           setHovered(true);
@@ -42,14 +43,24 @@ export function OrbitNode({ node, position, color, active, onSelect }: OrbitNode
           onSelect({ kind: node.kind, id: node.id });
         }}
       >
-        <sphereGeometry args={[0.45, 24, 24]} />
+        <sphereGeometry args={[0.45, 32, 32]} />
         <meshStandardMaterial
           color={color}
           emissive={color}
-          emissiveIntensity={active || hovered ? 1.8 : 0.7}
-          roughness={0.35}
-          metalness={0.5}
+          emissiveIntensity={active || hovered ? 2.4 : 0.9}
+          roughness={0.3}
+          metalness={0.4}
         />
+        {/* additive halo */}
+        <mesh scale={active || hovered ? 2.1 : 1.7}>
+          <sphereGeometry args={[0.45, 20, 20]} />
+          <meshBasicMaterial
+            color={color}
+            transparent
+            opacity={active || hovered ? 0.28 : 0.14}
+            depthWrite={false}
+          />
+        </mesh>
       </mesh>
       {(hovered || active) && (
         <Html center distanceFactor={14} position={[0, 0.9, 0]}>
