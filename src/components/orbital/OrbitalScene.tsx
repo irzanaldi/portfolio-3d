@@ -1,5 +1,5 @@
 'use client';
-import { Suspense, useMemo } from 'react';
+import { Suspense, useMemo, type RefObject } from 'react';
 import { Stars, Sparkles } from '@react-three/drei';
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 import { CenterNode } from './CenterNode';
@@ -12,7 +12,7 @@ interface OrbitalSceneProps {
   activeId: SectionId;
   autoRotate: boolean;
   reducedMotion: boolean;
-  onSection: (id: SectionId) => void;
+  progress: RefObject<number>;
 }
 
 const RING_SECTION: Record<number, SectionId> = {
@@ -21,7 +21,7 @@ const RING_SECTION: Record<number, SectionId> = {
   2: 'projects',
 };
 
-export function OrbitalScene({ activeId, autoRotate, reducedMotion, onSection }: OrbitalSceneProps) {
+export function OrbitalScene({ activeId, autoRotate, reducedMotion, progress }: OrbitalSceneProps) {
   const nodes = useMemo(() => buildNodes(), []);
   const ringNodes = useMemo(
     () => RING_CONFIG.map((c) => nodes.filter((n) => n.ringIndex === c.ringIndex)),
@@ -55,7 +55,7 @@ export function OrbitalScene({ activeId, autoRotate, reducedMotion, onSection }:
         </EffectComposer>
       </Suspense>
 
-      <ScrollRig reducedMotion={reducedMotion} onSection={onSection} />
+      <ScrollRig progress={progress} reducedMotion={reducedMotion} />
     </>
   );
 }

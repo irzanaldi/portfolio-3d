@@ -1,17 +1,18 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { ScrollControls, Scroll } from '@react-three/drei';
 import Link from 'next/link';
 import { OrbitalScene } from './OrbitalScene';
 import { Sections } from './Sections';
 import { useWebGL } from '@/hooks/useWebGL';
-import { WAYPOINTS, type SectionId } from '@/lib/orbital';
+import { WAYPOINTS, activeSection, type SectionId } from '@/lib/orbital';
 
 export function OrbitalExperience() {
   const webglOK = useWebGL();
   const [activeId, setActiveId] = useState<SectionId>('intro');
   const [reducedMotion, setReducedMotion] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const progress = useRef(0);
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -21,7 +22,17 @@ export function OrbitalExperience() {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
-  const onSection = useCallback((id: SectionId) => setActiveId(id), []);
+  const onScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollHeight - el.clientHeight;
+    const p = max > 0 ? el.scrollTop / max : 0;
+    progress.current = p;
+    setActiveId((prev) => {
+      const next = activeSection(p);
+      return next === prev ? prev : next;
+    });
+  }, []);
 
   if (!webglOK) {
     return (
@@ -39,29 +50,32 @@ export function OrbitalExperience() {
 
   return (
     <div className="orbital-root">
-      <Link className="orbital-back" href="/">
-        ← Home
-      </Link>
-
-      <Canvas
-        dpr={[1, 2]}
-        camera={{ position: [0, 5, 20], fov: 48 }}
-        gl={{ antialias: true, alpha: true, toneMappingExposure: 1.15 }}
-      >
-        <ScrollControls pages={5} damping={0.3}>
+      {/* fixed 3D layer behind */}
+      <div className="orbital-canvas-fixed">
+        <Canvas
+          dpr={[1, 2]}
+          camera={{ position: [0, 5, 20], fov: 48 }}
+          gl={{ antialias: true, alpha: true, toneMappingExposure: 1.15 }}
+        >
           <OrbitalScene
             activeId={activeId}
             autoRotate
             reducedMotion={reducedMotion}
-            onSection={onSection}
+            progress={progress}
           />
-          <Scroll html>
-            <Sections />
-          </Scroll>
-        </ScrollControls>
-      </Canvas>
+        </Canvas>
+      </div>
 
       <div className="orbital-vignette" />
+
+      {/* native scroll layer on top */}
+      <div className="orbital-scroll" ref={scrollRef} onScroll={onScroll}>
+        <Sections />
+      </div>
+
+      <Link className="orbital-back" href="/">
+        ← Home
+      </Link>
 
       <div className="orbital-legend">
         <div className="orbital-legend__row">

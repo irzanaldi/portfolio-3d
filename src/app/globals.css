@@ -65,13 +65,26 @@ body {
     radial-gradient(90% 70% at 50% 50%, #0a0b14 0%, #05060a 60%, #020308 100%);
   overflow: hidden;
 }
-.orbital-root canvas { display: block; position: relative; z-index: 1; }
+.orbital-canvas-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+.orbital-canvas-fixed canvas { display: block; }
 .orbital-vignette {
   pointer-events: none;
-  position: absolute;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(75% 75% at 50% 45%, transparent 55%, rgba(2, 3, 8, 0.78) 100%);
+}
+.orbital-scroll {
+  position: fixed;
   inset: 0;
   z-index: 2;
-  background: radial-gradient(75% 75% at 50% 45%, transparent 55%, rgba(2, 3, 8, 0.78) 100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 .orbital-grain {
   pointer-events: none;
@@ -220,11 +233,12 @@ body {
 
 /* Section progress dots */
 .orbital-dots {
-  position: absolute;
+  position: fixed;
   left: 22px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -244,10 +258,11 @@ body {
 
 /* HUD legend */
 .orbital-legend {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 24px;
   z-index: 10;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   gap: 8px;
