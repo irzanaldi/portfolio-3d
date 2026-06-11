@@ -3,6 +3,9 @@ import {
   RING_CONFIG,
   colorForKind,
   resolveConnections,
+  WAYPOINTS,
+  sampleWaypoint,
+  activeSection,
 } from '@/lib/orbital';
 import { skillCategories } from '@/data/skills';
 import { experiences } from '@/data/experience';
@@ -47,5 +50,21 @@ describe('orbital helpers', () => {
 
   it('returns empty connections for unknown experience id', () => {
     expect(resolveConnections('does-not-exist', nodes)).toEqual([]);
+  });
+
+  it('samples first/last waypoint exactly at progress 0 and 1', () => {
+    expect(sampleWaypoint(0).camera).toEqual(WAYPOINTS[0].camera);
+    expect(sampleWaypoint(1).camera).toEqual(WAYPOINTS[WAYPOINTS.length - 1].camera);
+  });
+
+  it('interpolates between waypoints mid-scroll', () => {
+    const mid = sampleWaypoint(0.5);
+    expect(mid.camera).toHaveLength(3);
+    mid.camera.forEach((c) => expect(Number.isFinite(c)).toBe(true));
+  });
+
+  it('maps progress to the correct active section', () => {
+    expect(activeSection(0)).toBe('intro');
+    expect(activeSection(1)).toBe('contact');
   });
 });

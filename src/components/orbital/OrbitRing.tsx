@@ -3,27 +3,30 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import type { Group } from 'three';
 import { OrbitNode } from './OrbitNode';
-import { nodePosition, type OrbitalNode, type RingConfig, type SelectionRef } from '@/lib/orbital';
+import { nodePosition, type OrbitalNode, type RingConfig } from '@/lib/orbital';
 
 interface OrbitRingProps {
   config: RingConfig;
   nodes: OrbitalNode[];
-  selected: SelectionRef | null;
+  highlight: boolean;
   autoRotate: boolean;
-  onSelect: (ref: SelectionRef) => void;
 }
 
-export function OrbitRing({ config, nodes, selected, autoRotate, onSelect }: OrbitRingProps) {
+export function OrbitRing({ config, nodes, highlight, autoRotate }: OrbitRingProps) {
   const ref = useRef<Group>(null);
   useFrame((_, delta) => {
     if (ref.current && autoRotate) ref.current.rotation.y += delta * config.speed;
   });
   return (
     <group rotation={config.tilt}>
-      {/* faint ring guide */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[config.radius, 0.015, 8, 128]} />
-        <meshBasicMaterial color={config.color} transparent opacity={0.25} />
+        <torusGeometry args={[config.radius, highlight ? 0.03 : 0.015, 8, 160]} />
+        <meshBasicMaterial
+          color={config.color}
+          transparent
+          opacity={highlight ? 0.5 : 0.22}
+          depthWrite={false}
+        />
       </mesh>
       <group ref={ref}>
         {nodes.map((n, i) => (
@@ -32,8 +35,7 @@ export function OrbitRing({ config, nodes, selected, autoRotate, onSelect }: Orb
             node={n}
             color={config.color}
             position={nodePosition(config.radius, i, nodes.length)}
-            active={selected?.kind === n.kind && selected?.id === n.id}
-            onSelect={onSelect}
+            highlight={highlight}
           />
         ))}
       </group>

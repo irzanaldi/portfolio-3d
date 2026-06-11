@@ -4,73 +4,33 @@ import { Stars, Sparkles } from '@react-three/drei';
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 import { CenterNode } from './CenterNode';
 import { OrbitRing } from './OrbitRing';
-import { CameraRig } from './CameraRig';
-import { ConnectionLines } from './ConnectionLines';
+import { ScrollRig } from './ScrollRig';
 import { Loader } from './Loader';
-import {
-  buildNodes,
-  RING_CONFIG,
-  resolveConnections,
-  nodePosition,
-  colorForKind,
-  type SelectionRef,
-} from '@/lib/orbital';
+import { buildNodes, RING_CONFIG, type SectionId } from '@/lib/orbital';
 
 interface OrbitalSceneProps {
-  selected: SelectionRef | null;
+  activeId: SectionId;
   autoRotate: boolean;
   reducedMotion: boolean;
-  onSelect: (ref: SelectionRef) => void;
-  onUserInteract: () => void;
+  onSection: (id: SectionId) => void;
 }
 
-export function OrbitalScene({
-  selected,
-  autoRotate,
-  reducedMotion,
-  onSelect,
-  onUserInteract,
-}: OrbitalSceneProps) {
+const RING_SECTION: Record<number, SectionId> = {
+  0: 'skills',
+  1: 'experience',
+  2: 'projects',
+};
+
+export function OrbitalScene({ activeId, autoRotate, reducedMotion, onSection }: OrbitalSceneProps) {
   const nodes = useMemo(() => buildNodes(), []);
   const ringNodes = useMemo(
     () => RING_CONFIG.map((c) => nodes.filter((n) => n.ringIndex === c.ringIndex)),
     [nodes],
   );
 
-  // selected node approx position (ring plane, ignoring live rotation) for camera focus
-  const targetPos = useMemo<[number, number, number] | null>(() => {
-    if (!selected) return null;
-    const cfg = RING_CONFIG.find((c) =>
-      nodes.some((n) => n.ringIndex === c.ringIndex && n.kind === selected.kind),
-    );
-    if (!cfg) return null;
-    const list = ringNodes[cfg.ringIndex];
-    const idx = list.findIndex((n) => n.id === selected.id);
-    if (idx < 0) return null;
-    return nodePosition(cfg.radius, idx, list.length);
-  }, [selected, nodes, ringNodes]);
-
-  // connection segments: center -> each connected project ring position
-  const segments = useMemo<
-    Array<[[number, number, number], [number, number, number]]>
-  >(() => {
-    if (selected?.kind !== 'experience') return [];
-    const connectedIds = resolveConnections(selected.id, nodes);
-    const projCfg = RING_CONFIG[2];
-    const list = ringNodes[2];
-    return connectedIds
-      .map((pid) => {
-        const idx = list.findIndex((n) => n.id === pid);
-        if (idx < 0) return null;
-        const pos = nodePosition(projCfg.radius, idx, list.length);
-        return [[0, 0, 0], pos] as [[number, number, number], [number, number, number]];
-      })
-      .filter((s): s is [[number, number, number], [number, number, number]] => s !== null);
-  }, [selected, nodes, ringNodes]);
-
   return (
     <>
-      <fog attach="fog" args={['#05060a', 18, 40]} />
+      <fog attach="fog" args={['#05060a', 18, 42]} />
       <ambientLight intensity={0.35} />
       <pointLight position={[8, 8, 8]} intensity={80} color="#22d3ee" />
       <pointLight position={[-8, -4, -8]} intensity={55} color="#e879f9" />
@@ -85,19 +45,17 @@ export function OrbitalScene({
             key={cfg.ringIndex}
             config={cfg}
             nodes={ringNodes[i]}
-            selected={selected}
+            highlight={activeId === RING_SECTION[cfg.ringIndex]}
             autoRotate={autoRotate && !reducedMotion}
-            onSelect={onSelect}
           />
         ))}
-        <ConnectionLines segments={segments} color={colorForKind('project')} />
         <EffectComposer>
           <Bloom intensity={1.15} luminanceThreshold={0.12} luminanceSmoothing={0.85} mipmapBlur radius={0.75} />
           <Vignette eskil={false} offset={0.25} darkness={0.55} />
         </EffectComposer>
       </Suspense>
 
-      <CameraRig target={targetPos} reducedMotion={reducedMotion} onUserInteract={onUserInteract} />
+      <ScrollRig reducedMotion={reducedMotion} onSection={onSection} />
     </>
   );
 }
