@@ -42,24 +42,30 @@ export function Sections() {
       </section>
 
       <section className="orbital-page orbital-page--right">
-        <div className="orbital-card">
+        <div className="orbital-card orbital-card--wide">
           <span className="orbital-panel__kind" style={{ color: '#a78bfa' }}>
             02 — EXPERIENCE
           </span>
           <h2>Where I&apos;ve built</h2>
-          {experiences.map((e) => (
-            <div key={e.id} className="orbital-card__group">
-              <h3>{e.role}</h3>
-              <p className="orbital-panel__meta">
-                {e.company} · {e.period}
-              </p>
-              <ul className="orbital-panel__bullets">
-                {e.bullets.slice(0, 2).map((b, i) => (
-                  <li key={i}>{b}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <ol className="orbital-timeline">
+            {experiences.map((e) => (
+              <li key={e.id} className="orbital-timeline__item">
+                <div className="orbital-timeline__head">
+                  <h3>{e.role}</h3>
+                  <span className="orbital-timeline__period">{e.period}</span>
+                </div>
+                <p className="orbital-timeline__company">
+                  {e.company}
+                  {e.location ? ` · ${e.location}` : ''}
+                </p>
+                <ul className="orbital-panel__bullets">
+                  {e.bullets.slice(0, 2).map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

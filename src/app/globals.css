@@ -196,7 +196,58 @@ body {
   margin: 6px 0 18px;
   color: #f4faff;
 }
+.orbital-card--wide { max-width: 540px; }
 .orbital-card__group { margin-bottom: 18px; }
+
+/* Experience timeline */
+.orbital-timeline {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+.orbital-timeline__item {
+  position: relative;
+  padding: 0 0 20px 20px;
+  border-left: 1px solid rgba(167, 139, 250, 0.3);
+}
+.orbital-timeline__item:last-child { padding-bottom: 0; border-left-color: transparent; }
+.orbital-timeline__item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #a78bfa;
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.9);
+}
+.orbital-timeline__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.orbital-timeline__head h3 {
+  font-family: var(--font-orbital-display, sans-serif);
+  font-size: 17px;
+  margin: 0;
+  color: #f4faff;
+}
+.orbital-timeline__period {
+  flex: none;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(230, 247, 255, 0.55);
+  white-space: nowrap;
+}
+.orbital-timeline__company {
+  margin: 2px 0 8px;
+  font-size: 13px;
+  color: #cdbcff;
+}
+.orbital-page--right .orbital-timeline { text-align: left; }
+.orbital-page--right .orbital-panel__bullets { text-align: left; }
 .orbital-card__group h3 {
   font-family: var(--font-orbital-display, sans-serif);
   font-size: 17px;
