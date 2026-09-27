@@ -34,3 +34,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Cara Setup
+
+Portofolio 3D interaktif: **Next.js 16 + React 19** dengan **React Three Fiber / Drei** (Three.js), Tailwind CSS, dan TypeScript.
+
+### Prasyarat
+
+- Node.js 20+ & npm
+
+### Langkah
+
+```bash
+# 1. Install dependency
+npm install
+
+# 2. Environment (opsional) — buat .env.local
+#    NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# 3. Jalankan server dev
+npm run dev             # http://localhost:3000
+```
+
+Build & jalankan produksi: `npm run build` lalu `npm run start`. Lint: `npm run lint`. Test (Jest): `npm test` atau `npm run test:watch`.
