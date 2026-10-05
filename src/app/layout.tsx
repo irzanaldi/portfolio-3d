@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Irzan Aldi Ananto — Fullstack Developer',
+  title: 'Irzan Aldi Ananto — Senior Fullstack Developer',
   description:
-    'Fullstack Developer with 3+ years experience building web apps and APIs for retail and e-commerce platforms. NestJS, Next.js, Flutter, Laravel.',
+    'Senior Fullstack Developer with 5+ years experience building web apps and APIs for retail and e-commerce platforms. NestJS, Next.js, Flutter, Laravel.',
   keywords: [
-    'Fullstack Developer',
+    'Senior Fullstack Developer',
     'NestJS',
     'Next.js',
     'Flutter',
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Irzan Aldi Ananto' }],
   openGraph: {
-    title: 'Irzan Aldi Ananto — Fullstack Developer',
+    title: 'Irzan Aldi Ananto — Senior Fullstack Developer',
     description:
-      'Fullstack Developer with 3+ years experience building web apps and APIs for retail and e-commerce platforms.',
+      'Senior Fullstack Developer with 5+ years experience building web apps and APIs for retail and e-commerce platforms.',
     url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: 'Irzan Aldi Ananto',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Irzan Aldi Ananto — Fullstack Developer',
+    title: 'Irzan Aldi Ananto — Senior Fullstack Developer',
     description:
-      'Fullstack Developer with 3+ years experience building web apps and APIs.',
+      'Senior Fullstack Developer with 5+ years experience building web apps and APIs.',
     images: ['/og-image.png'],
   },
   robots: { index: true, follow: true },
