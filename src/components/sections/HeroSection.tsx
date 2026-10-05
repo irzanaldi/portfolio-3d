@@ -18,7 +18,7 @@ const FloatingShapes = dynamic(
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative flex h-screen items-center overflow-hidden">
       {/* 3D Background - hidden on mobile */}
       <div className="absolute inset-0 hidden md:block">
         <Scene>
@@ -28,56 +28,52 @@ export function HeroSection() {
         </Scene>
       </div>
 
-      {/* Mobile gradient fallback */}
-      <div className="absolute inset-0 md:hidden bg-gradient-to-br from-[#0a0a1a] via-[#0a1628] to-[#1a0a2e]" />
+      {/* Mobile gradient fallback (dark-indigo, D-brighter) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[var(--bg2)] via-[var(--bg)] to-[var(--surface)] md:hidden" />
 
-      {/* Content overlay */}
-      <div className="relative z-10 text-center px-6">
-        <motion.p
-          className="text-[var(--v)] font-[family-name:var(--font-mono)] text-sm mb-4 tracking-widest uppercase"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          Hello, I&apos;m
-        </motion.p>
-
-        <motion.h1
-          className="text-5xl md:text-7xl font-[family-name:var(--font-heading)] font-bold mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          Irzan Aldi{' '}
-          <span className="text-[var(--v)]">Ananto</span>
-        </motion.h1>
-
-        <motion.p
-          className="text-xl md:text-2xl text-[var(--muted)] mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          Fullstack Developer
-        </motion.p>
-
-        <motion.p
-          className="text-[var(--muted)] max-w-lg mx-auto mb-12 leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-        >
-          3+ years building web apps & APIs for retail and e-commerce platforms.
-        </motion.p>
-
-        {/* Scroll indicator */}
+      {/* Content */}
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
         <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
+          className="max-w-2xl"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
         >
-          <div className="w-6 h-10 rounded-full border-2 border-[var(--v)]/40 flex justify-center pt-2">
-            <div className="w-1 h-2 rounded-full bg-[var(--v)]" />
+          <p className="mb-[16px] font-[family-name:var(--font-mono)] text-[.8rem] text-[var(--v)]">
+            Hello, I&apos;m
+          </p>
+
+          <h1 className="font-[family-name:var(--font-heading)] text-[clamp(2.8rem,7.6vw,6.2rem)] font-semibold leading-[0.9] tracking-[-.025em]">
+            Irzan Aldi
+            <br />
+            <span className="grad-text">Ananto.</span>
+          </h1>
+
+          <p className="mt-[14px] font-[family-name:var(--font-heading)] text-[clamp(1.1rem,2vw,1.5rem)] font-medium text-[var(--muted)]">
+            Senior Fullstack Developer
+          </p>
+
+          <p className="mt-[18px] max-w-[38ch] text-[1.1rem] text-[var(--muted)]">
+            5+ years taking retail &amp; e-commerce products from vague pain points all the way to production — plus eleven systems of my own, from security to media.
+          </p>
+
+          <div className="mt-[26px] flex gap-[28px]">
+            <div>
+              <b className="block font-[family-name:var(--font-heading)] text-[1.6rem] font-semibold">5+</b>
+              <span className="mt-[2px] block font-[family-name:var(--font-mono)] text-[.66rem] text-[var(--muted)]">years</span>
+            </div>
+            <div>
+              <b className="grad-text block font-[family-name:var(--font-heading)] text-[1.6rem] font-semibold">11</b>
+              <span className="mt-[2px] block font-[family-name:var(--font-mono)] text-[.66rem] text-[var(--muted)]">own projects</span>
+            </div>
+            <div>
+              <b className="block font-[family-name:var(--font-heading)] text-[1.6rem] font-semibold">100+</b>
+              <span className="mt-[2px] block font-[family-name:var(--font-mono)] text-[.66rem] text-[var(--muted)]">stores served</span>
+            </div>
+          </div>
+
+          <div className="mt-[30px] font-[family-name:var(--font-mono)] text-[.68rem] text-[var(--faint)]">
+            ↓ scroll
           </div>
         </motion.div>
       </div>

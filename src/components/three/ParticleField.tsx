@@ -42,7 +42,7 @@ export function ParticleField({ count = 800, radius = 15 }: ParticleFieldProps) 
       </bufferGeometry>
       <pointsMaterial
         size={0.03}
-        color="#00d4ff"
+        color="#9277FF"
         transparent
         opacity={0.6}
         sizeAttenuation

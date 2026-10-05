@@ -52,25 +52,25 @@ export function FloatingShapes() {
       <FloatingShape
         position={[-3, 1, -2]}
         geometry="icosahedron"
-        color="#00d4ff"
+        color="#9277FF"
         speed={0.8}
       />
       <FloatingShape
         position={[3.5, -0.5, -3]}
         geometry="torus"
-        color="#7b2ff7"
+        color="#F07AE0"
         speed={0.6}
       />
       <FloatingShape
         position={[-1.5, -1.5, -1.5]}
         geometry="octahedron"
-        color="#00d4ff"
+        color="#9277FF"
         speed={1.0}
       />
       <FloatingShape
         position={[2, 2, -4]}
         geometry="icosahedron"
-        color="#7b2ff7"
+        color="#F07AE0"
         speed={0.5}
       />
     </group>
