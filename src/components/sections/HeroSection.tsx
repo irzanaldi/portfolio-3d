@@ -34,7 +34,7 @@ export function HeroSection() {
       {/* Content overlay */}
       <div className="relative z-10 text-center px-6">
         <motion.p
-          className="text-[var(--color-accent-cyan)] font-[family-name:var(--font-mono)] text-sm mb-4 tracking-widest uppercase"
+          className="text-[var(--v)] font-[family-name:var(--font-mono)] text-sm mb-4 tracking-widest uppercase"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -49,11 +49,11 @@ export function HeroSection() {
           transition={{ delay: 0.4 }}
         >
           Irzan Aldi{' '}
-          <span className="text-[var(--color-accent-cyan)] glow-text-cyan">Ananto</span>
+          <span className="text-[var(--v)]">Ananto</span>
         </motion.h1>
 
         <motion.p
-          className="text-xl md:text-2xl text-[var(--color-text-secondary)] mb-8"
+          className="text-xl md:text-2xl text-[var(--muted)] mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
@@ -62,7 +62,7 @@ export function HeroSection() {
         </motion.p>
 
         <motion.p
-          className="text-[var(--color-text-secondary)] max-w-lg mx-auto mb-12 leading-relaxed"
+          className="text-[var(--muted)] max-w-lg mx-auto mb-12 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
@@ -76,8 +76,8 @@ export function HeroSection() {
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          <div className="w-6 h-10 rounded-full border-2 border-[var(--color-accent-cyan)]/40 flex justify-center pt-2">
-            <div className="w-1 h-2 rounded-full bg-[var(--color-accent-cyan)]" />
+          <div className="w-6 h-10 rounded-full border-2 border-[var(--v)]/40 flex justify-center pt-2">
+            <div className="w-1 h-2 rounded-full bg-[var(--v)]" />
           </div>
         </motion.div>
       </div>

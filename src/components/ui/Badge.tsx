@@ -12,8 +12,8 @@ export function Badge({ children, className }: BadgeProps) {
       className={cn(
         'inline-flex items-center px-3 py-1 rounded-full text-xs',
         'font-[family-name:var(--font-mono)]',
-        'bg-[var(--color-accent-cyan)]/10 text-[var(--color-accent-cyan)]',
-        'border border-[var(--color-accent-cyan)]/20',
+        'bg-[var(--v)]/10 text-[var(--v)]',
+        'border border-[var(--v)]/20',
         className
       )}
     >

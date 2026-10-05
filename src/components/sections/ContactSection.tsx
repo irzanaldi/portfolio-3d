@@ -20,10 +20,10 @@ export function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Get In <span className="text-[var(--color-accent-cyan)]">Touch</span>
+          Get In <span className="text-[var(--v)]">Touch</span>
         </motion.h2>
         <motion.p
-          className="text-[var(--color-text-secondary)] mb-12 max-w-md mx-auto"
+          className="text-[var(--muted)] mb-12 max-w-md mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -38,15 +38,15 @@ export function ContactSection() {
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="glass rounded-xl p-5 text-left transition-all duration-300 hover:glow-cyan hover:border-[var(--color-accent-cyan)]/30 group"
+              className="glass rounded-xl p-5 text-left transition-all duration-300 hover:border-[var(--v)]/30 group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 * i }}
             >
               <span className="text-2xl mb-2 block">{link.icon}</span>
-              <p className="text-sm text-[var(--color-text-secondary)] mb-1">{link.label}</p>
-              <p className="text-[var(--color-text-primary)] font-medium text-sm group-hover:text-[var(--color-accent-cyan)] transition-colors">{link.value}</p>
+              <p className="text-sm text-[var(--muted)] mb-1">{link.label}</p>
+              <p className="text-[var(--text)] font-medium text-sm group-hover:text-[var(--v)] transition-colors">{link.value}</p>
             </motion.a>
           ))}
         </div>
@@ -54,7 +54,7 @@ export function ContactSection() {
           <a href="mailto:irzanaldi@gmail.com"><Button variant="primary">Say Hello</Button></a>
         </motion.div>
         <motion.p
-          className="mt-16 text-xs text-[var(--color-text-secondary)]"
+          className="mt-16 text-xs text-[var(--muted)]"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

@@ -26,10 +26,10 @@ export function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Featured <span className="text-[var(--color-accent-cyan)]">Projects</span>
+          Featured <span className="text-[var(--v)]">Projects</span>
         </motion.h2>
         <motion.p
-          className="text-center text-[var(--color-text-secondary)] mb-16"
+          className="text-center text-[var(--muted)] mb-16"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -65,8 +65,8 @@ export function ProjectsSection() {
               <GlassCard className="cursor-pointer" hover>
                 <button className="w-full text-left cursor-pointer" onClick={() => setSelectedProject(project)}>
                   <h3 className="text-lg font-[family-name:var(--font-heading)] font-bold mb-1">{project.title}</h3>
-                  <p className="text-[var(--color-text-secondary)] text-xs mb-3">{project.company} · {project.period}</p>
-                  <p className="text-[var(--color-text-secondary)] text-sm mb-4 line-clamp-2">{project.description}</p>
+                  <p className="text-[var(--muted)] text-xs mb-3">{project.company} · {project.period}</p>
+                  <p className="text-[var(--muted)] text-sm mb-4 line-clamp-2">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (<Badge key={tech}>{tech}</Badge>))}
                   </div>

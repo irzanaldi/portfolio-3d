@@ -1,17 +1,26 @@
 /* portfolio-3d/src/app/globals.css */
 @import "tailwindcss";
 
-@theme {
-  --color-bg-primary: #0a0a1a;
-  --color-bg-card: rgba(255, 255, 255, 0.05);
-  --color-accent-cyan: #00d4ff;
-  --color-accent-purple: #7b2ff7;
-  --color-text-primary: #f0f0f0;
-  --color-text-secondary: #8892a0;
-
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+/* Direction D (brighter) design tokens — see docs/mockup/full-site-d.html */
+:root {
+  --bg: #17132E;
+  --bg2: #141029;
+  --surface: #221C44;
+  --surface2: #2A2252;
+  --line: #39315E;
+  --text: #F8F5FF;
+  --muted: #BDB2DD;
+  --faint: #8A7FB0;
+  --v: #9277FF;
+  --f: #F07AE0;
+  --a: #FFC56A;
+  --live: #64E6B4;
+  --grad: linear-gradient(100deg, #9277FF, #F07AE0 55%, #FFC56A);
+  --glow1: rgba(146, 119, 255, .30);
+  --glow2: rgba(240, 122, 224, .17);
+  --font-heading: "Clash Display", system-ui, sans-serif;
+  --font-body: "General Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 html {
@@ -19,10 +28,22 @@ html {
 }
 
 body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-body);
   overflow-x: hidden;
+}
+
+/* Ambient glow backdrop */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(44vw 30vw at 78% -8%, var(--glow1), transparent 62%),
+    radial-gradient(34vw 26vw at 10% 2%, var(--glow2), transparent 60%);
 }
 
 /* Scrollbar styling */
@@ -31,28 +52,36 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent-cyan);
+  background: var(--v);
   border-radius: 3px;
 }
 
 /* Glass card utility */
 .glass {
-  background: var(--color-bg-card);
+  background: var(--surface);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Glow utility */
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+/* Gradient text + section-tick helpers (Direction D) */
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.glow-text-cyan {
-  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+.tick {
+  display: inline-block;
+  width: 26px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--grad);
+  margin-bottom: 9px;
 }
 
 /* ===== Orbital Workspace ===== */

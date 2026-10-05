@@ -39,7 +39,7 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <a
           href="#hero"
-          className="font-[family-name:var(--font-heading)] font-bold text-lg text-[var(--color-accent-cyan)]"
+          className="font-[family-name:var(--font-heading)] font-bold text-lg text-[var(--v)]"
           onClick={(e) => {
             e.preventDefault();
             handleClick('#hero');
@@ -58,7 +58,7 @@ export function Navbar() {
                 e.preventDefault();
                 handleClick(item.href);
               }}
-              className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors"
+              className="text-sm text-[var(--muted)] hover:text-[var(--v)] transition-colors"
             >
               {item.label}
             </a>
@@ -67,7 +67,7 @@ export function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-[var(--color-text-secondary)] cursor-pointer"
+          className="md:hidden text-[var(--muted)] cursor-pointer"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? '✕' : '☰'}
@@ -85,7 +85,7 @@ export function Navbar() {
                 e.preventDefault();
                 handleClick(item.href);
               }}
-              className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors"
+              className="text-sm text-[var(--muted)] hover:text-[var(--v)] transition-colors"
             >
               {item.label}
             </a>

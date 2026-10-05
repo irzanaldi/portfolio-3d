@@ -8,7 +8,7 @@ export function ScrollProgress() {
   return (
     <div className="fixed top-0 left-0 w-full h-[2px] z-50">
       <div
-        className="h-full bg-[var(--color-accent-cyan)] shadow-[0_0_10px_var(--color-accent-cyan)]"
+        className="h-full bg-[var(--v)] shadow-[0_0_10px_var(--v)]"
         style={{ width: `${progress * 100}%` }}
       />
     </div>

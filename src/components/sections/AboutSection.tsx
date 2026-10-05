@@ -55,10 +55,10 @@ export function AboutSection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl md:text-4xl font-[family-name:var(--font-heading)] font-bold mb-6">
-            About <span className="text-[var(--color-accent-cyan)]">Me</span>
+            About <span className="text-[var(--v)]">Me</span>
           </h2>
 
-          <p className="text-[var(--color-text-secondary)] leading-relaxed mb-8">
+          <p className="text-[var(--muted)] leading-relaxed mb-8">
             Fullstack Developer with 3+ years of experience building web applications
             and APIs for retail and e-commerce platforms. Hands-on expertise with
             Laravel, NestJS, Next.js, Vue.js, and Flutter. Currently working at
@@ -70,7 +70,7 @@ export function AboutSection() {
           <div className="space-y-4">
             {skillCategories.map((cat) => (
               <div key={cat.category}>
-                <p className="text-sm text-[var(--color-text-secondary)] mb-2 font-[family-name:var(--font-mono)]">
+                <p className="text-sm text-[var(--muted)] mb-2 font-[family-name:var(--font-mono)]">
                   {cat.category}
                 </p>
                 <div className="flex flex-wrap gap-2">

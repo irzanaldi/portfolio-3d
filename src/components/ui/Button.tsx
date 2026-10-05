@@ -12,9 +12,9 @@ export function Button({ variant = 'primary', children, className, ...props }: B
       className={cn(
         'px-6 py-3 rounded-xl font-medium transition-all duration-300 cursor-pointer',
         variant === 'primary' &&
-          'bg-[var(--color-accent-cyan)] text-[var(--color-bg-primary)] hover:shadow-[0_0_20px_rgba(0,212,255,0.4)]',
+          'bg-[var(--v)] text-[var(--bg)] hover:shadow-[0_0_20px_rgba(0,212,255,0.4)]',
         variant === 'ghost' &&
-          'border border-[var(--color-accent-cyan)]/30 text-[var(--color-accent-cyan)] hover:bg-[var(--color-accent-cyan)]/10',
+          'border border-[var(--v)]/30 text-[var(--v)] hover:bg-[var(--v)]/10',
         className
       )}
       {...props}

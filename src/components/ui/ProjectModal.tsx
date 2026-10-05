@@ -37,13 +37,13 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] cursor-pointer"
+              className="absolute top-4 right-4 text-[var(--muted)] hover:text-[var(--text)] cursor-pointer"
             >
               ✕
             </button>
 
             {/* Project screenshot placeholder */}
-            <div className="w-full h-48 rounded-xl bg-[var(--color-accent-cyan)]/5 border border-[var(--color-accent-cyan)]/10 mb-6 flex items-center justify-center text-[var(--color-text-secondary)]">
+            <div className="w-full h-48 rounded-xl bg-[var(--v)]/5 border border-[var(--v)]/10 mb-6 flex items-center justify-center text-[var(--muted)]">
               {project.images[0] ? (
                 <img
                   src={project.images[0]}
@@ -62,10 +62,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             <h3 className="text-2xl font-[family-name:var(--font-heading)] font-bold mb-1">
               {project.title}
             </h3>
-            <p className="text-[var(--color-text-secondary)] text-sm mb-4">
+            <p className="text-[var(--muted)] text-sm mb-4">
               {project.company} · {project.period}
             </p>
-            <p className="text-[var(--color-text-primary)] mb-6 leading-relaxed">
+            <p className="text-[var(--text)] mb-6 leading-relaxed">
               {project.description}
             </p>
 
