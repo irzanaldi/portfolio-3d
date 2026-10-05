@@ -443,3 +443,13 @@ body::before {
   padding: 24px;
   font-family: var(--font-orbital-body, sans-serif);
 }
+
+/* Reduced motion — disable decorative orbital/particle spin only, never layout/navigation */
+@media (prefers-reduced-motion: reduce) {
+  .spin {
+    animation: none;
+  }
+  .orbital-scrollcue {
+    animation: none;
+  }
+}
