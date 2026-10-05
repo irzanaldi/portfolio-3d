@@ -79,7 +79,7 @@ export function Sections() {
             <div key={p.id} className="orbital-card__group">
               <h3>{p.title}</h3>
               <p className="orbital-panel__meta">
-                {p.company} · {p.period}
+                {p.category} · {p.status}
               </p>
               <p className="orbital-card__desc">{p.description}</p>
               <ul className="orbital-panel__tags">
