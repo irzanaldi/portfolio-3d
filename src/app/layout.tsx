@@ -49,10 +49,12 @@ export default function RootLayout({
       <link
         href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@400,500,600&display=swap"
         rel="stylesheet"
+        precedence="default"
       />
       <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet"
+        precedence="default"
       />
       <body className="antialiased">{children}</body>
     </html>
