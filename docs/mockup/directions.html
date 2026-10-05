@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfolio — 4 design directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Hanken+Grotesk:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:#000}
+  .chooser{position:fixed;z-index:50;top:0;left:0;right:0;display:flex;gap:2px;background:#000;padding:8px;justify-content:center;flex-wrap:wrap;border-bottom:1px solid #222}
+  .chooser a{font-family:"Space Mono",monospace;font-size:.72rem;color:#aaa;text-decoration:none;padding:7px 12px;border:1px solid #333;border-radius:6px;transition:.2s}
+  .chooser a:hover{color:#fff;border-color:#fff}
+  .panel{padding:92px 0 72px;position:relative;overflow:hidden}
+  .inner{max-width:1040px;margin:0 auto;padding:0 30px}
+  .label{font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.14em;margin-bottom:30px;opacity:.7}
+  .rows{margin-top:40px}
+  .p-row{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;padding:18px 0}
+  .p-name{font-size:1.5rem;line-height:1.1}
+  .p-desc{font-size:.95rem;margin-top:4px;max-width:54ch;opacity:.72}
+  .p-stack{font-family:"Space Mono",monospace;font-size:.7rem;margin-top:8px;opacity:.55}
+  .p-chip{font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.1em;padding:4px 10px;white-space:nowrap;align-self:center}
+
+  /* ============ A · SWISS BOLD PRINT (light / cobalt / Anton) ============ */
+  .d1{background:#F6F5F1;color:#0A0A0A}
+  .d1 .label{color:#1B35FF}
+  .d1 h2{font-family:"Anton",sans-serif;font-size:clamp(3.4rem,11vw,9rem);line-height:.84;letter-spacing:.005em;text-transform:uppercase}
+  .d1 h2 .blk{background:#1B35FF;color:#F6F5F1;padding:0 .12em;display:inline-block}
+  .d1 .lead{font-family:"Archivo",sans-serif;font-weight:500;font-size:1.25rem;max-width:40ch;margin-top:24px}
+  .d1 .p-row{border-top:3px solid #0A0A0A}
+  .d1 .rows{border-bottom:3px solid #0A0A0A}
+  .d1 .p-name{font-family:"Archivo",sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.01em}
+  .d1 .p-chip{background:#0A0A0A;color:#F6F5F1}
+  .d1 .p-chip.live{background:#1B35FF}
+
+  /* ============ B · CINEMATIC WARM DARK (oxblood/amber / Fraunces serif) ============ */
+  .d2{background:#17100E;color:#F1E7DD;position:relative}
+  .d2::before{content:"";position:absolute;inset:0;background:radial-gradient(60vw 40vw at 75% 0,rgba(232,163,61,.14),transparent 60%);pointer-events:none}
+  .d2 .inner{position:relative}
+  .d2 .label{color:#E8A33D}
+  .d2 h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(3rem,8vw,6.4rem);line-height:.98;letter-spacing:-.02em}
+  .d2 h2 em{font-style:italic;font-weight:500;color:#E8A33D}
+  .d2 .lead{font-family:"Fraunces",serif;font-size:1.3rem;font-weight:400;line-height:1.5;max-width:46ch;margin-top:22px;color:#cbb8a8}
+  .d2 .p-row{border-top:1px solid #3a2b22}
+  .d2 .p-name{font-family:"Fraunces",serif;font-weight:600}
+  .d2 .p-chip{border:1px solid #E8A33D;color:#E8A33D;border-radius:999px}
+  .d2 .p-chip.live{background:#8A3A33;border-color:#8A3A33;color:#F1E7DD}
+
+  /* ============ C · NEON BRUT / DEV-ZINE (near-black / hot magenta / mono+grotesk) ============ */
+  .d3{background:#0A0A0C;color:#ECECEC}
+  .d3 .label{color:#FF3D7F}
+  .d3 h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(2.8rem,8vw,6rem);line-height:.95;letter-spacing:-.03em}
+  .d3 h2 .mk{color:#FF3D7F}
+  .d3 h2 .sl{font-family:"Space Mono",monospace;color:#4D5DFF;font-weight:400;font-size:.5em;vertical-align:middle}
+  .d3 .lead{font-family:"Space Mono",monospace;font-size:.95rem;max-width:52ch;margin-top:22px;color:#9a9aa5;line-height:1.7}
+  .d3 .rows{display:grid;gap:14px}
+  .d3 .p-row{border:2px solid #23232a;border-radius:4px;padding:18px;background:#0e0e12;transition:.18s;box-shadow:4px 4px 0 #15151b}
+  .d3 .p-row:hover{border-color:#FF3D7F;box-shadow:6px 6px 0 #FF3D7F;transform:translate(-2px,-2px)}
+  .d3 .p-name{font-family:"Space Grotesk",sans-serif;font-weight:700}
+  .d3 .p-chip{border:1.5px solid #FF3D7F;color:#FF3D7F}
+  .d3 .p-chip.live{background:#4D5DFF;border-color:#4D5DFF;color:#fff}
+
+  /* ============ D · VIVID GRADIENT MAXIMAL (violet→fuchsia→amber / Clash rounded) ============ */
+  .d4{background:#0C0918;color:#F4F1FF;position:relative}
+  .d4::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(40vw 30vw at 18% 10%,rgba(124,58,237,.5),transparent 60%),
+      radial-gradient(40vw 30vw at 85% 20%,rgba(219,39,119,.4),transparent 60%),
+      radial-gradient(40vw 34vw at 60% 95%,rgba(245,158,11,.28),transparent 60%);
+    filter:blur(10px)}
+  .d4 .inner{position:relative}
+  .d4 .label{color:#F59E0B}
+  .d4 h2{font-family:"Clash Display",sans-serif;font-weight:700;font-size:clamp(3.2rem,10vw,8rem);line-height:.9;letter-spacing:-.02em;
+    background:linear-gradient(100deg,#C4B5FD,#F0ABFC 40%,#FDE68A);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .d4 .lead{font-family:"General Sans",sans-serif;font-weight:500;font-size:1.25rem;max-width:42ch;margin-top:24px;color:#c9c2e8}
+  .d4 .p-row{border-radius:16px;padding:18px 22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);margin-bottom:12px;transition:.2s}
+  .d4 .p-row:hover{background:rgba(255,255,255,.07);border-color:rgba(240,171,252,.5)}
+  .d4 .p-name{font-family:"Clash Display",sans-serif;font-weight:600}
+  .d4 .p-chip{border-radius:999px;background:linear-gradient(90deg,#7C3AED,#DB2777);color:#fff}
+  .d4 .p-chip.code{background:rgba(255,255,255,.1)}
+  .d4 .p-chip.live{background:linear-gradient(90deg,#10B981,#5ED3A3)}
+
+  @media(max-width:720px){.p-row{flex-direction:column;gap:8px}.p-chip{align-self:flex-start}}
+</style>
+</head>
+<body>
+
+<div class="chooser">
+  <a href="#d1">A · Swiss Bold</a>
+  <a href="#d2">B · Cinematic Warm</a>
+  <a href="#d3">C · Neon Brut</a>
+  <a href="#d4">D · Vivid Gradient</a>
+</div>
+
+<!-- A -->
+<section class="panel d1" id="d1">
+  <div class="inner">
+    <div class="label">DIRECTION A — SWISS BOLD PRINT · cobalt #1B35FF · Anton + Archivo · poster-scale, color-block</div>
+    <h2>Eleven<br/><span class="blk">systems.</span><br/>Shipped.</h2>
+    <p class="lead">Full-stack engineer across security, finance, operations and media.</p>
+    <div class="rows">
+      <div class="p-row"><div><div class="p-name">pinjam-buku</div><div class="p-desc">A full library system — catalog to circulation.</div><div class="p-stack">LARAVEL · FILAMENT · MYSQL</div></div><div class="p-chip live">LIVE</div></div>
+      <div class="p-row"><div><div class="p-name">netra</div><div class="p-desc">External attack-surface recon, automated.</div><div class="p-stack">GO · REACT · POSTGRES</div></div><div class="p-chip">CODE</div></div>
+      <div class="p-row"><div><div class="p-name">CLIPER</div><div class="p-desc">Long video into ready-to-post clips.</div><div class="p-stack">N8N · PYTHON · FFMPEG</div></div><div class="p-chip">VIDEO</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- B -->
+<section class="panel d2" id="d2">
+  <div class="inner">
+    <div class="label">DIRECTION B — CINEMATIC WARM DARK · amber/oxblood · Fraunces serif · moody, editorial</div>
+    <h2>Systems, <em>shipped.</em><br/>Eleven of them.</h2>
+    <p class="lead">From an attack-surface scanner to a full library system — real software, built end to end and running.</p>
+    <div class="rows">
+      <div class="p-row"><div><div class="p-name">pinjam-buku</div><div class="p-desc">A full library system — catalog, members, circulation.</div><div class="p-stack">Laravel · Filament · MySQL</div></div><div class="p-chip live">Live</div></div>
+      <div class="p-row"><div><div class="p-name">netra</div><div class="p-desc">External attack-surface recon, automated.</div><div class="p-stack">Go · React · Postgres</div></div><div class="p-chip">Code</div></div>
+      <div class="p-row"><div><div class="p-name">CLIPER</div><div class="p-desc">Long video into ready-to-post clips.</div><div class="p-stack">n8n · Python · FFmpeg</div></div><div class="p-chip">Video</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- C -->
+<section class="panel d3" id="d3">
+  <div class="inner">
+    <div class="label">DIRECTION C — NEON BRUT / DEV-ZINE · hot magenta #FF3D7F + indigo · Space Grotesk/Mono · hard-edged boxes</div>
+    <h2>11 systems <span class="mk">//</span> shipped <span class="sl">[ live x3 ]</span></h2>
+    <p class="lead">// full-stack. security, finance, ops, media.<br/>// built end to end. mostly running in prod.</p>
+    <div class="rows">
+      <div class="p-row"><div><div class="p-name">pinjam-buku</div><div class="p-desc">A full library system — catalog to circulation.</div><div class="p-stack">laravel · filament · mysql</div></div><div class="p-chip live">LIVE</div></div>
+      <div class="p-row"><div><div class="p-name">netra</div><div class="p-desc">External attack-surface recon, automated.</div><div class="p-stack">go · react · postgres</div></div><div class="p-chip">CODE</div></div>
+      <div class="p-row"><div><div class="p-name">CLIPER</div><div class="p-desc">Long video into ready-to-post clips.</div><div class="p-stack">n8n · python · ffmpeg</div></div><div class="p-chip">VIDEO</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- D -->
+<section class="panel d4" id="d4">
+  <div class="inner">
+    <div class="label">DIRECTION D — VIVID GRADIENT MAXIMAL · violet→fuchsia→amber · Clash + General Sans · energetic, glowy</div>
+    <h2>Shipped.<br/>Eleven times.</h2>
+    <p class="lead">Full-stack engineer building across security, finance, operations and media.</p>
+    <div class="rows">
+      <div class="p-row"><div><div class="p-name">pinjam-buku</div><div class="p-desc">A full library system — catalog to circulation.</div><div class="p-stack">Laravel · Filament · MySQL</div></div><div class="p-chip live">LIVE</div></div>
+      <div class="p-row"><div><div class="p-name">netra</div><div class="p-desc">External attack-surface recon, automated.</div><div class="p-stack">Go · React · Postgres</div></div><div class="p-chip code">CODE</div></div>
+      <div class="p-row"><div><div class="p-name">CLIPER</div><div class="p-desc">Long video into ready-to-post clips.</div><div class="p-stack">n8n · Python · FFmpeg</div></div><div class="p-chip code">VIDEO</div></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

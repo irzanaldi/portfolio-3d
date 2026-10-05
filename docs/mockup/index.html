@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Irzan Aldi — systems index (design mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0C1222; --ink2:#0A0F1C; --surface:#141B2E; --surface2:#1A2238;
+    --line:#283249; --text:#EAEDF5; --muted:#8A95AD;
+    --signal:#F2C14E; --signal-dim:rgba(242,193,78,.14);
+    --live:#5ED3A3; --live-dim:rgba(94,211,163,.14);
+    --maxw:1120px;
+    --display:"Clash Display",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink); color:var(--text); font-family:var(--body);
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden; position:relative;
+  }
+  /* restrained aurora + graph-paper, the only ambient decoration */
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(60vw 40vw at 80% -5%, rgba(242,193,78,.08), transparent 60%),
+      radial-gradient(50vw 40vw at -10% 10%, rgba(94,211,163,.06), transparent 55%);
+  }
+  body::after{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5;
+    background-image:
+      linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:44px 44px;
+    mask-image:linear-gradient(180deg,#000,transparent 70%);
+  }
+  .wrap{position:relative; z-index:1; max-width:var(--maxw); margin:0 auto; padding:0 28px}
+  a{color:inherit; text-decoration:none}
+  .mono{font-family:var(--mono); font-size:.78rem; letter-spacing:.02em; color:var(--muted)}
+
+  /* ---- top bar ---- */
+  nav{position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center;
+    padding:22px 28px; max-width:var(--maxw); margin:0 auto}
+  nav .brand{font-family:var(--display); font-weight:600; letter-spacing:.01em}
+  nav .right{display:flex; gap:22px; align-items:center}
+  nav .right a{color:var(--muted); font-size:.9rem; transition:color .2s}
+  nav .right a:hover{color:var(--text)}
+  .dot-live{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--live);
+    box-shadow:0 0 0 0 var(--live); animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(94,211,163,.5)}70%{box-shadow:0 0 0 7px rgba(94,211,163,0)}100%{box-shadow:0 0 0 0 rgba(94,211,163,0)}}
+
+  /* ---- hero ---- */
+  header{padding:60px 0 40px}
+  .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center}
+  .hero .intro{max-width:30ch}
+  .hero h1{font-family:var(--display); font-weight:600; font-size:clamp(3rem,8vw,6.6rem);
+    line-height:.92; letter-spacing:-.02em; margin-bottom:18px}
+  .hero h1 em{font-style:normal; color:var(--signal)}
+  .hero p.lead{font-size:clamp(1.05rem,1.6vw,1.3rem); color:var(--muted); max-width:34ch}
+  .hero .count{margin-top:26px; display:flex; gap:28px; align-items:baseline}
+  .hero .count b{font-family:var(--display); font-weight:600; font-size:2rem; color:var(--text)}
+  .hero .count span{display:block}
+  .hero .count .mono{font-size:.72rem}
+
+  /* ---- orbital (faux, CSS/SVG) ---- */
+  .orbital{aspect-ratio:1; width:100%; max-width:420px; margin-left:auto; position:relative}
+  .orbital svg{width:100%; height:100%; display:block; overflow:visible}
+  .ring{fill:none; stroke:var(--line); stroke-width:1}
+  .ring.gold{stroke:rgba(242,193,78,.35); stroke-dasharray:2 6}
+  .spin{transform-origin:center; animation:spin linear infinite}
+  .s1{animation-duration:48s}.s2{animation-duration:34s; animation-direction:reverse}.s3{animation-duration:60s}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .node{fill:var(--surface2); stroke:var(--line); stroke-width:1}
+  .node.live{fill:var(--live); stroke:none}
+  .node.sig{fill:var(--signal); stroke:none}
+  .core{fill:var(--ink); stroke:var(--signal); stroke-width:1.5; filter:drop-shadow(0 0 12px rgba(242,193,78,.5))}
+  .core-label{font-family:var(--display); font-weight:600; font-size:13px; fill:var(--text); text-anchor:middle}
+
+  /* ---- section heading ---- */
+  section{padding:46px 0}
+  .shead{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:26px; border-bottom:1px solid var(--line); padding-bottom:14px}
+  .shead h2{font-family:var(--display); font-weight:500; font-size:clamp(1.4rem,2.6vw,2rem); letter-spacing:-.01em}
+  .shead .mono{white-space:nowrap}
+
+  /* ---- featured band ---- */
+  .featured{display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:18px}
+  .tile{position:relative; border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    background:var(--surface); min-height:230px; display:flex; flex-direction:column; transition:border-color .25s, transform .25s}
+  .tile:hover{border-color:rgba(242,193,78,.5); transform:translateY(-3px)}
+  .tile .shot{flex:1; position:relative; overflow:hidden}
+  .tile.a .shot{background:
+      linear-gradient(135deg,#17233b,#0e1627),
+      radial-gradient(40% 60% at 70% 20%,rgba(94,211,163,.25),transparent)}
+  .tile.b .shot{background:linear-gradient(135deg,#1c1830,#101019)}
+  .tile.c .shot{background:linear-gradient(135deg,#231d12,#12100a)}
+  .browser{position:absolute; inset:16px 16px 0 16px; background:#0b1120; border:1px solid var(--line);
+    border-radius:8px 8px 0 0; display:flex; flex-direction:column}
+  .browser .bar{display:flex; gap:6px; padding:8px 10px; border-bottom:1px solid var(--line)}
+  .browser .bar i{width:8px; height:8px; border-radius:50%; background:#2c3652; display:block}
+  .browser .page{flex:1; padding:12px; display:grid; gap:7px; align-content:start}
+  .browser .page .l{height:7px; border-radius:4px; background:#223052}
+  .browser .page .l.w1{width:60%}.l.w2{width:85%; background:#2a3a63}.l.w3{width:40%}
+  .browser .page .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:6px}
+  .browser .page .grid span{height:30px; border-radius:5px; background:#1b273f}
+  .play{position:absolute; inset:0; display:grid; place-items:center}
+  .play b{width:54px; height:54px; border-radius:50%; background:rgba(242,193,78,.92); display:grid; place-items:center}
+  .play b::after{content:""; border-left:16px solid #0C1222; border-top:10px solid transparent; border-bottom:10px solid transparent; margin-left:4px}
+  .galley{position:absolute; inset:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+  .galley span{background:#e9e4d6; border-radius:3px; opacity:.85}
+  .galley span:nth-child(2){opacity:.6}.galley span:nth-child(3){opacity:.75}.galley span:nth-child(4){opacity:.7}
+  .tile .meta{padding:14px 16px; border-top:1px solid var(--line); background:var(--surface)}
+  .tile .meta .t{font-family:var(--display); font-weight:500; font-size:1.15rem; display:flex; justify-content:space-between; align-items:center}
+  .tile .meta p{color:var(--muted); font-size:.9rem; margin-top:3px}
+
+  /* ---- index rows ---- */
+  .band{margin-bottom:38px}
+  .band h3{font-family:var(--display); font-weight:500; font-size:1.15rem; color:var(--signal); margin-bottom:4px}
+  .band .sub{color:var(--muted); font-size:.85rem; margin-bottom:10px}
+  .row{display:grid; grid-template-columns:1fr auto; gap:16px; align-items:start;
+    padding:18px 16px 18px 18px; border-top:1px solid var(--line); position:relative; cursor:pointer;
+    transition:background .22s, padding-left .22s}
+  .row::before{content:""; position:absolute; left:0; top:0; bottom:0; width:2px; background:transparent; transition:background .22s}
+  .row:hover{background:var(--surface); padding-left:26px}
+  .row:hover::before{background:var(--signal)}
+  .row:last-child{border-bottom:1px solid var(--line)}
+  .row .name{font-family:var(--display); font-weight:500; font-size:1.35rem}
+  .row .desc{color:var(--muted); margin-top:3px; font-size:.98rem; max-width:62ch}
+  .row .stack{margin-top:9px; font-family:var(--mono); font-size:.74rem; color:#6f7b94; letter-spacing:.02em}
+  .row .stack b{color:var(--signal); font-weight:500}
+  .chip{justify-self:end; font-family:var(--mono); font-size:.66rem; letter-spacing:.08em;
+    padding:4px 9px; border-radius:999px; border:1px solid var(--line); color:var(--muted); white-space:nowrap}
+  .chip.live{color:var(--live); border-color:var(--live-dim); background:var(--live-dim)}
+  .chip.video{color:var(--signal); border-color:var(--signal-dim); background:var(--signal-dim)}
+  .chip.proto{color:#b79cff; border-color:rgba(183,156,255,.2); background:rgba(183,156,255,.1)}
+  .tags{justify-self:end; margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; max-width:160px}
+  .tag{font-family:var(--mono); font-size:.6rem; color:#6f7b94; border:1px solid var(--line); border-radius:4px; padding:2px 6px}
+
+  /* ---- contact ---- */
+  footer{padding:64px 0 90px; border-top:1px solid var(--line); margin-top:30px}
+  footer h2{font-family:var(--display); font-weight:600; font-size:clamp(1.8rem,4vw,3rem); letter-spacing:-.02em; max-width:18ch}
+  footer h2 em{font-style:normal; color:var(--signal)}
+  footer .links{margin-top:22px; display:flex; gap:14px; flex-wrap:wrap}
+  footer .links a{border:1px solid var(--line); border-radius:999px; padding:10px 18px; color:var(--text);
+    font-size:.92rem; transition:border-color .2s, background .2s}
+  footer .links a:hover{border-color:var(--signal); background:var(--signal-dim)}
+
+  .note{position:fixed; z-index:5; bottom:14px; left:14px; font-family:var(--mono); font-size:.66rem;
+    color:var(--muted); background:rgba(10,15,28,.85); border:1px solid var(--line); border-radius:8px; padding:7px 11px; backdrop-filter:blur(6px)}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr} .orbital{max-width:300px; margin:0 auto; order:-1}
+    .featured{grid-template-columns:1fr} .hero .count{flex-wrap:wrap; gap:18px}
+  }
+  @media (prefers-reduced-motion:reduce){ .spin{animation:none} .dot-live{animation:none} }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Irzan Aldi</div>
+  <div class="right">
+    <a href="#work">Work</a>
+    <a href="#index">Index</a>
+    <a href="#contact">Contact</a>
+    <span class="mono" style="display:flex;align-items:center;gap:7px"><span class="dot-live"></span>3 live</span>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header>
+    <div class="hero">
+      <div class="intro">
+        <h1>Systems,<br/>shipped.<br/><em>Eleven of them.</em></h1>
+        <p class="lead">Full-stack engineer working across security, finance, operations, and media — from an attack-surface scanner to a full library system.</p>
+        <div class="count">
+          <div><b>11</b><span class="mono">projects</span></div>
+          <div><b>7</b><span class="mono">stacks</span></div>
+          <div><b>3</b><span class="mono">running live</span></div>
+        </div>
+      </div>
+
+      <div class="orbital" aria-hidden="true">
+        <svg viewBox="-210 -210 420 420">
+          <ellipse class="ring" rx="70" ry="48"/>
+          <ellipse class="ring gold" rx="128" ry="86"/>
+          <ellipse class="ring" rx="190" ry="128"/>
+          <g class="spin s1">
+            <circle class="node sig" cx="70" cy="0" r="6"/>
+            <circle class="node" cx="-58" cy="-26" r="5"/>
+          </g>
+          <g class="spin s2">
+            <circle class="node live" cx="128" cy="0" r="6.5"/>
+            <circle class="node" cx="-90" cy="60" r="5"/>
+            <circle class="node live" cx="40" cy="-78" r="5.5"/>
+            <circle class="node" cx="-120" cy="-30" r="5"/>
+          </g>
+          <g class="spin s3">
+            <circle class="node" cx="190" cy="0" r="5"/>
+            <circle class="node live" cx="-150" cy="80" r="6"/>
+            <circle class="node" cx="60" cy="-120" r="5"/>
+            <circle class="node sig" cx="-70" cy="-118" r="5"/>
+            <circle class="node" cx="150" cy="80" r="5"/>
+          </g>
+          <circle class="core" r="30"/>
+          <text class="core-label" y="5">IA</text>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="shead">
+      <h2>Featured</h2>
+      <span class="mono">live demo · video · gallery, in-page</span>
+    </div>
+    <div class="featured">
+      <div class="tile a">
+        <div class="shot">
+          <div class="browser">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="page">
+              <div class="l w2"></div><div class="l w1"></div>
+              <div class="grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="t">pinjam-buku <span class="chip live">LIVE</span></div>
+          <p>A full library system — catalog, members, circulation. Browse the live catalog right here.</p>
+        </div>
+      </div>
+
+      <div class="tile c">
+        <div class="shot"><div class="play"><b></b></div></div>
+        <div class="meta">
+          <div class="t">CLIPER <span class="chip video">VIDEO</span></div>
+          <p>Turns one long video into ready-to-post clips.</p>
+        </div>
+      </div>
+
+      <div class="tile b">
+        <div class="shot">
+          <div class="browser">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="page"><div class="l w1"></div><div class="l w3"></div><div class="l w2"></div><div class="l w3"></div></div>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="t">netra <span class="chip">CODE</span></div>
+          <p>Automated external attack-surface recon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="index">
+    <div class="shead">
+      <h2>Full index</h2>
+      <span class="mono">11 projects · 5 groups</span>
+    </div>
+
+    <div class="band">
+      <h3>Security &amp; Intelligence</h3>
+      <div class="sub">Finding and watching what's exposed.</div>
+      <div class="row">
+        <div><div class="name">netra</div>
+          <div class="desc">External attack-surface recon, automated end to end — discover, scan, triage, report, and push findings out.</div>
+          <div class="stack"><b>Go</b> · React · Postgres · Docker</div></div>
+        <div class="chip">CODE</div>
+      </div>
+      <div class="row">
+        <div><div class="name">competitor-intel</div>
+          <div class="desc">Track what competitors ship and surface the changes that matter.</div>
+          <div class="stack"><b>Node</b> · Docker · Postgres</div></div>
+        <div class="chip">CODE</div>
+      </div>
+    </div>
+
+    <div class="band">
+      <h3>Finance</h3>
+      <div class="sub">Decisions tested before they cost money.</div>
+      <div class="row">
+        <div><div class="name">crypto-bot</div>
+          <div class="desc">A market-agnostic trading bot built backtest-first — strategies prove themselves on history before going live.</div>
+          <div class="stack"><b>Python</b> · Pandas · ccxt</div></div>
+        <div class="chip video">VIDEO</div>
+      </div>
+    </div>
+
+    <div class="band">
+      <h3>Platforms &amp; Operations</h3>
+      <div class="sub">The systems a business actually runs on.</div>
+      <div class="row">
+        <div><div class="name">pinjam-buku</div>
+          <div class="desc">A full library system ported from Perpusnas INLISLite — catalog, membership, circulation, fines, public catalog and kiosk.</div>
+          <div class="stack"><b>Laravel</b> · Filament · MySQL</div></div>
+        <div class="chip live">LIVE</div>
+      </div>
+      <div class="row">
+        <div><div class="name">silsilah</div>
+          <div class="desc">Map a family across generations and explore the tree.</div>
+          <div class="stack"><b>Laravel</b> · Node · MySQL</div></div>
+        <div class="chip live">LIVE</div>
+      </div>
+      <div class="row">
+        <div><div class="name">pos</div>
+          <div class="desc">A point-of-sale suite: web console, backend, and two mobile apps for staff and customers.</div>
+          <div class="stack"><b>Node</b> · Flutter · Postgres</div></div>
+        <div class="tags"><span class="tag">web</span><span class="tag">mobile ×2</span><span class="chip video" style="margin-top:4px">VIDEO</span></div>
+      </div>
+      <div class="row">
+        <div><div class="name">presensi</div>
+          <div class="desc">Attendance tracking with a mobile companion for check-in.</div>
+          <div class="stack"><b>Laravel</b> · Flutter</div></div>
+        <div class="tags"><span class="tag">mobile</span><span class="chip" style="margin-top:4px">CODE</span></div>
+      </div>
+      <div class="row">
+        <div><div class="name">prototype-bidan</div>
+          <div class="desc">A mobile prototype for midwife-led care — booking and records.</div>
+          <div class="stack"><b>Flutter</b> · Dart</div></div>
+        <div class="chip proto">PROTOTYPE</div>
+      </div>
+    </div>
+
+    <div class="band">
+      <h3>Media &amp; Automation</h3>
+      <div class="sub">Repetitive work handed to a pipeline.</div>
+      <div class="row">
+        <div><div class="name">CLIPER</div>
+          <div class="desc">Turns one long video into ready-to-post vertical clips, cut on scene and silence, and delivers them to Telegram.</div>
+          <div class="stack"><b>n8n</b> · Python · FFmpeg</div></div>
+        <div class="chip video">VIDEO</div>
+      </div>
+      <div class="row">
+        <div><div class="name">DIGITAL_PRODUCTS</div>
+          <div class="desc">Generates printable kids' worksheets and carousels at scale, ready to list and sell.</div>
+          <div class="stack"><b>Python</b> · Pillow</div></div>
+        <div class="chip">GALLERY</div>
+      </div>
+      <div class="row">
+        <div><div class="name">autoapply</div>
+          <div class="desc">Applies to jobs without the copy-paste — a browser extension plus a web dashboard.</div>
+          <div class="stack"><b>Node</b> · Browser extension</div></div>
+        <div class="chip">CODE</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Want the <em>live ones</em> or the code?</h2>
+    <div class="links">
+      <a href="#">GitHub — irzanaldi</a>
+      <a href="#">Email</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Résumé (PDF)</a>
+    </div>
+  </div>
+</footer>
+
+<div class="note">design mockup · not the real site · deep-ink + gold/jade · Clash Display + Hanken Grotesk</div>
+
+</body>
+</html>
