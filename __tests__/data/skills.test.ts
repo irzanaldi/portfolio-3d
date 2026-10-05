@@ -2,8 +2,8 @@
 import { skillCategories, type SkillCategory } from '@/data/skills';
 
 describe('skills data', () => {
-  it('should have 5 categories', () => {
-    expect(skillCategories).toHaveLength(5);
+  it('should have 8 categories', () => {
+    expect(skillCategories).toHaveLength(8);
   });
 
   it('each category has items', () => {
