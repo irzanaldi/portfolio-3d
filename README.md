@@ -57,3 +57,23 @@ npm run dev             # http://localhost:3000
 ```
 
 Build & jalankan produksi: `npm run build` lalu `npm run start`. Lint: `npm run lint`. Test (Jest): `npm test` atau `npm run test:watch`.
+
+## Deploy (gratis)
+
+### 1. Portfolio → Vercel
+- Import repo `irzanaldi/portfolio-3d` di Vercel → framework ke-detect Next.js otomatis.
+- Set env `NEXT_PUBLIC_SITE_URL=https://<project>.vercel.app`.
+- Deploy. Tiap push = auto-deploy.
+
+### 2. App yang di-embed live (pinjam-buku, silsilah) → host gratis
+- Deploy Laravel-nya ke Fly.io / Render (free) + DB gratis (Neon/Aiven). Set `APP_URL`, `APP_KEY`, `DB_*`, lalu `php artisan migrate --seed` (data demo).
+- **Izinkan embed:** kirim header `Content-Security-Policy: frame-ancestors 'self' https://<domain-portfolio>` dan JANGAN kirim `X-Frame-Options: DENY` — kalau tidak, iframe-nya blank.
+- Masukin URL hasil deploy ke `embedUrl` project terkait di `src/data/projects.ts`.
+
+### 3. Aset
+- Foto diri → taruh `public/portrait.jpg`. Résumé sudah ada di `public/resume.pdf`.
+- Screenshot web app: `node scripts/capture.mjs <id> <url>` (butuh `npm i -D playwright && npx playwright install chromium`); hasil ke `public/shots/<id>/`, lalu isi array `images` di `projects.ts`.
+
+### Catatan
+- `netra` sengaja TIDAK di-deploy publik (tool recon) — screenshot + GitHub saja.
+- Data project ada di `src/data/projects.ts`; tiap project punya halaman sendiri di `/projects/<id>`.
