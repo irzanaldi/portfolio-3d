@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- partial fixtures deliberately bypass the full Project shape */
 import { pickMedia } from '@/lib/media';
 
 test('embed > video > gallery > none', () => {
