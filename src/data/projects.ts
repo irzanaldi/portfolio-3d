@@ -165,7 +165,11 @@ export const projects: Project[] = [
     status: 'code',
     platforms: ['web', 'mobile'],
     images: ['/shots/presensi/1.png', '/shots/presensi/2.png', '/shots/presensi/0.png'],
-    mobileImages: ['/shots/presensi/mobile-login.png'],
+    mobileImages: [
+      '/shots/presensi/mobile-home.png',
+      '/shots/presensi/mobile-attendance.png',
+      '/shots/presensi/mobile-profile.png',
+    ],
     repoUrl: 'https://github.com/irzanaldi/presensi',
   },
   {
