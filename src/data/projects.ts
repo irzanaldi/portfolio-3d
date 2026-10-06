@@ -10,6 +10,7 @@ export interface Project {
   status: 'live' | 'video' | 'gallery' | 'code' | 'prototype';
   platforms?: ('web' | 'mobile' | 'cli')[];
   images: string[];
+  mobileImages?: string[];
   video?: string;
   embedUrl?: string;
   repoUrl?: string;
@@ -164,6 +165,7 @@ export const projects: Project[] = [
     status: 'code',
     platforms: ['web', 'mobile'],
     images: ['/shots/presensi/1.png', '/shots/presensi/2.png', '/shots/presensi/0.png'],
+    mobileImages: ['/shots/presensi/mobile-login.png'],
     repoUrl: 'https://github.com/irzanaldi/presensi',
   },
   {
@@ -182,6 +184,7 @@ export const projects: Project[] = [
     status: 'code',
     platforms: ['web', 'mobile'],
     images: ['/shots/pos/0.png'],
+    mobileImages: ['/shots/pos/mobile-login.png'],
     repoUrl: 'https://github.com/irzanaldi/pos',
   },
   {

@@ -87,6 +87,25 @@ function HeroMedia({ project }: { project: Project }) {
   );
 }
 
+function MobileShots({ images }: { images: string[] }) {
+  return (
+    <div className="mt-6">
+      <div className="mb-3 font-[family-name:var(--font-mono)] text-[.68rem] text-[var(--faint)]">MOBILE APP</div>
+      <div className="flex flex-wrap justify-center gap-5">
+        {images.map((img) => (
+          <div
+            key={img}
+            className="w-[230px] overflow-hidden rounded-[28px] border-[3px] border-[var(--line)] bg-[var(--bg2)] p-1.5 shadow-[0_10px_30px_rgba(0,0,0,.35)]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- static screenshot, no loader needed */}
+            <img src={img} alt="" className="w-full rounded-[22px]" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function ProjectDetail({ project }: { project: Project }) {
   const kick = project.platforms?.length
     ? `${project.category} · ${project.platforms.join(' + ')}`
@@ -99,6 +118,7 @@ export function ProjectDetail({ project }: { project: Project }) {
         style={{ background: 'linear-gradient(150deg, var(--surface2), var(--bg2))' }}
       >
         <HeroMedia project={project} />
+        {project.mobileImages?.length ? <MobileShots images={project.mobileImages} /> : null}
       </div>
 
       <div className="grid gap-[30px] p-6 sm:p-[28px_30px_32px] md:grid-cols-[1.4fr_1fr]">
