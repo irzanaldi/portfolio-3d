@@ -35,7 +35,6 @@ export const projects: Project[] = [
     platforms: ['web'],
     images: [],
     repoUrl: 'https://github.com/irzanaldi/pinjam-buku',
-    liveUrl: 'https://example.com',
     featured: true,
   },
   {
@@ -147,7 +146,6 @@ export const projects: Project[] = [
     platforms: ['web'],
     images: [],
     repoUrl: 'https://github.com/irzanaldi/silsilah',
-    liveUrl: 'https://example.com',
   },
   {
     id: 'presensi',

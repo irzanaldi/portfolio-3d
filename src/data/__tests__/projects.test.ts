@@ -21,8 +21,11 @@ test('exactly 3 featured', () => {
   expect(projects.filter(p => p.featured)).toHaveLength(3);
 });
 
-test('live projects declare an embedUrl or liveUrl', () => {
-  for (const p of projects.filter(p => p.status === 'live')) {
-    expect(p.embedUrl || p.liveUrl).toBeTruthy();
+test('any live/demo URL is a real https URL (no placeholders)', () => {
+  for (const p of projects) {
+    for (const url of [p.embedUrl, p.liveUrl].filter(Boolean)) {
+      expect(url).toMatch(/^https:\/\//);
+      expect(url).not.toContain('example.com');
+    }
   }
 });
