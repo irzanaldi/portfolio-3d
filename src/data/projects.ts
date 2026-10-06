@@ -187,7 +187,7 @@ export const projects: Project[] = [
     techStack: ['NestJS', 'Node', 'Postgres', 'Flutter'],
     status: 'code',
     platforms: ['web', 'mobile'],
-    images: ['/shots/pos/0.png'],
+    images: ['/shots/pos/kasir-dashboard.png', '/shots/pos/0.png'],
     mobileImages: ['/shots/pos/mobile-login.png'],
     repoUrl: 'https://github.com/irzanaldi/pos',
   },
