@@ -1,6 +1,5 @@
 // portfolio-3d/src/components/ui/ProjectDetail.tsx
 import { pickMedia } from '@/lib/media';
-import { PhoneFrame } from '@/components/ui/PhoneFrame';
 import type { Project } from '@/data/projects';
 
 function isYouTubeUrl(url: string): boolean {
@@ -24,7 +23,6 @@ function toYouTubeEmbedUrl(url: string): string {
 
 function HeroMedia({ project }: { project: Project }) {
   const media = pickMedia(project);
-  const isMobile = project.platforms?.includes('mobile') ?? false;
 
   if (media.kind === 'embed') {
     return (
@@ -67,20 +65,11 @@ function HeroMedia({ project }: { project: Project }) {
   }
 
   if (media.kind === 'gallery') {
-    if (isMobile) {
-      return (
-        <div className="flex flex-wrap justify-center gap-3.5">
-          {media.images.map((img, i) => (
-            <PhoneFrame key={img} src={img} variant={i % 2 === 0 ? 'a' : 'b'} />
-          ))}
-        </div>
-      );
-    }
     return (
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
         {media.images.map((img) => (
           // eslint-disable-next-line @next/next/no-img-element -- arbitrary gallery paths, no loader config needed
-          <img key={img} src={img} alt="" className="aspect-video w-full rounded-xl border border-[var(--line)] object-cover" />
+          <img key={img} src={img} alt="" className="aspect-video w-full rounded-xl border border-[var(--line)] object-cover object-top" />
         ))}
       </div>
     );

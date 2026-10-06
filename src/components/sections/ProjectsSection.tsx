@@ -75,8 +75,17 @@ function FeaturedTile({ project }: { project: Project }) {
       href={`/projects/${project.id}`}
       className="flex min-h-[236px] flex-col overflow-hidden rounded-[14px] border border-[var(--line)] bg-[var(--surface)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[var(--v)]"
     >
-      <div className="relative flex-1" style={{ background: 'linear-gradient(150deg, var(--surface2), var(--bg2))' }}>
-        {isMobile ? <PhoneMinis /> : project.status === 'live' ? <BrowserThumb /> : <PlayGlyph />}
+      <div className="relative flex-1 overflow-hidden" style={{ background: 'linear-gradient(150deg, var(--surface2), var(--bg2))' }}>
+        {project.images[0] ? (
+          // eslint-disable-next-line @next/next/no-img-element -- static screenshot, no loader needed
+          <img src={project.images[0]} alt="" className="absolute inset-0 h-full w-full object-cover object-top" />
+        ) : isMobile ? (
+          <PhoneMinis />
+        ) : project.status === 'live' ? (
+          <BrowserThumb />
+        ) : (
+          <PlayGlyph />
+        )}
       </div>
       <div className="border-t border-[var(--line)] px-4 py-3.5">
         <div className="flex items-center justify-between gap-2 font-[family-name:var(--font-heading)] text-[1.12rem] font-medium">
