@@ -266,7 +266,14 @@ export const projects: Project[] = [
     techStack: ['NestJS', 'Node', 'React', 'Postgres', 'WhatsApp'],
     status: 'code',
     platforms: ['web'],
-    images: [],
+    images: [
+      '/shots/vertical-saas/ops.png',
+      '/shots/vertical-saas/customer.png',
+      '/shots/vertical-saas/warungin.png',
+      '/shots/vertical-saas/landing-laundrin.png',
+      '/shots/vertical-saas/landing-warungin.png',
+      '/shots/vertical-saas/landing-mebelin.png',
+    ],
     repoUrl: 'https://github.com/irzanaldi/vertical-saas',
   },
   {
