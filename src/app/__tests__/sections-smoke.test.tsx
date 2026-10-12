@@ -7,7 +7,7 @@ test('SkillsSection renders a known category label', () => {
   expect(screen.getByText('Architecture')).toBeInTheDocument();
 });
 
-test('ExperienceSection renders the Senior Fullstack Developer role', () => {
+test('ExperienceSection renders the Fullstack Developer role', () => {
   render(<ExperienceSection />);
-  expect(screen.getByText(/Senior Fullstack Developer/)).toBeInTheDocument();
+  expect(screen.getByText(/Fullstack Developer/)).toBeInTheDocument();
 });

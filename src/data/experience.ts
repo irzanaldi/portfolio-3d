@@ -26,7 +26,7 @@ export const experiences: Experience[] = [
   {
     id: 'tbs-indonesia',
     company: 'The Body Shop Indonesia',
-    role: 'Senior Fullstack Developer',
+    role: 'Fullstack Developer',
     period: 'Aug 2023 — Present',
     location: 'Indonesia',
     bullets: [

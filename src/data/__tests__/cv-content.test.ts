@@ -3,7 +3,7 @@ import { skillCategories } from '@/data/skills';
 
 test('experience reflects Senior role and both employers', () => {
   const tbs = experiences.find(e => e.company === 'The Body Shop Indonesia')!;
-  expect(tbs.role).toMatch(/Senior Fullstack/);
+  expect(tbs.role).toMatch(/Fullstack/);
   expect(tbs.bullets.length).toBeGreaterThanOrEqual(6);
   expect(experiences.some(e => e.company === 'HW Group')).toBe(true);
 });

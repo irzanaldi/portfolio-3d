@@ -5,7 +5,7 @@ import { useState } from 'react';
 const facts = [
   { label: 'BASED IN', value: 'Tangerang Selatan, Indonesia' },
   { label: 'FOCUS', value: 'Microservices · APIs · data' },
-  { label: 'NOW', value: 'Senior Fullstack · The Body Shop' },
+  { label: 'NOW', value: 'Fullstack · The Body Shop' },
   { label: 'EDUCATION', value: 'B.Tech IT · Univ. Pamulang' },
 ];
 
@@ -77,7 +77,7 @@ export function AboutSection() {
           </div>
 
           <p className="text-[1.18rem] leading-[1.7]">
-            Senior Fullstack Developer with 5+ years building end-to-end applications for retail &amp; e-commerce — taking vague user pain points all the way through backend, frontend and database to production.{' '}
+            Fullstack Developer with 5+ years building end-to-end applications for retail &amp; e-commerce — taking vague user pain points all the way through backend, frontend and database to production.{' '}
             <span className="text-[var(--muted)]">
               Specialized in microservices and event-driven architecture across an 11-service ecosystem (Kafka, Redis), data warehousing and ETL, and real-time systems. Hands-on with NestJS, Next.js, Laravel, Vue.js, Go, Python and Flutter, in an AI-augmented workflow. Off the clock I build across security, finance and media — the projects below.
             </span>

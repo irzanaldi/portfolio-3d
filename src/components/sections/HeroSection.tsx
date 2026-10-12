@@ -50,7 +50,7 @@ export function HeroSection() {
           </h1>
 
           <p className="mt-[14px] font-[family-name:var(--font-heading)] text-[clamp(1.1rem,2vw,1.5rem)] font-medium text-[var(--muted)]">
-            Senior Fullstack Developer
+            Fullstack Developer
           </p>
 
           <p className="mt-[18px] max-w-[38ch] text-[1.1rem] text-[var(--muted)]">
