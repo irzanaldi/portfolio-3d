@@ -21,7 +21,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'pinjam-buku',
-    title: 'pinjam-buku',
+    title: 'Pinjam Buku',
     category: 'Platforms',
     tagline: 'A full library system — catalog, kiosk, and circulation.',
     description:
@@ -65,7 +65,7 @@ export const projects: Project[] = [
   },
   {
     id: 'crypto-bot',
-    title: 'crypto-bot',
+    title: 'Crypto Trading Bot',
     category: 'Finance',
     tagline: 'A market-agnostic trading bot, backtest-first — proven on history before going live.',
     description:
@@ -88,7 +88,7 @@ export const projects: Project[] = [
   },
   {
     id: 'netra',
-    title: 'netra',
+    title: 'Netra',
     category: 'Security',
     tagline: 'External attack-surface recon, automated end to end — discover, scan, triage, report, distribute.',
     description:
@@ -106,7 +106,7 @@ export const projects: Project[] = [
   },
   {
     id: 'competitor-intel',
-    title: 'competitor-intel',
+    title: 'Competitor Intel',
     category: 'Intelligence',
     tagline: 'Track what competitors ship and surface the changes that matter.',
     description:
@@ -128,7 +128,7 @@ export const projects: Project[] = [
   },
   {
     id: 'silsilah',
-    title: 'silsilah',
+    title: 'SILSILAH',
     category: 'Platforms',
     tagline: 'School administration service system — submit, track, done.',
     description:
@@ -151,7 +151,7 @@ export const projects: Project[] = [
   },
   {
     id: 'presensi',
-    title: 'presensi',
+    title: 'WorkSync',
     category: 'Platforms',
     tagline: 'HRIS with attendance, leave, and a mobile check-in app.',
     description:
@@ -174,11 +174,11 @@ export const projects: Project[] = [
   },
   {
     id: 'pos',
-    title: 'pos',
+    title: 'POS & ERP',
     category: 'Platforms',
-    tagline: 'A point-of-sale suite — web console, backend, and two mobile apps.',
+    tagline: 'Multi-tenant POS growing into a full ERP — web, mobile, and back office.',
     description:
-      'A point-of-sale suite built as four apps: a NestJS backend and a web console for the counter, plus two Flutter apps — one for staff on the floor, one for customers to order and pay.',
+      'A multi-tenant point-of-sale platform evolving into an ERP: a NestJS backend + web console and two Flutter apps (staff + customer), plus financial/GL, payments (Midtrans), CRM, and online ordering — all with per-tenant data isolation.',
     highlights: [
       'Offline-first transactions that sync when the network returns',
       'Real-time inventory shared across web and both mobile apps',
@@ -193,7 +193,7 @@ export const projects: Project[] = [
   },
   {
     id: 'prototype-bidan',
-    title: 'prototype-bidan',
+    title: 'Bidan Care',
     category: 'Mobile',
     tagline: 'A mobile prototype for midwife-led care — booking and records.',
     description:
@@ -211,7 +211,7 @@ export const projects: Project[] = [
   },
   {
     id: 'digital-products',
-    title: 'DIGITAL_PRODUCTS',
+    title: 'Digital Products',
     category: 'Media',
     tagline: 'Generates printable kids’ worksheets and carousels at scale, ready to list and sell.',
     description:
@@ -235,7 +235,7 @@ export const projects: Project[] = [
   },
   {
     id: 'autoapply',
-    title: 'autoapply',
+    title: 'AutoApply',
     category: 'Automation',
     tagline: 'Applies to jobs without the copy-paste — a browser extension plus a web dashboard.',
     description:
@@ -250,5 +250,41 @@ export const projects: Project[] = [
     platforms: ['web'],
     images: ['/shots/autoapply/0.png', '/shots/autoapply/1.png', '/shots/autoapply/2.png'],
     repoUrl: 'https://github.com/irzanaldi/autoapply',
+  },
+  {
+    id: 'vertical-saas',
+    title: 'Laundrin & Warungin',
+    category: 'Platforms',
+    tagline: 'Multi-vertical local-business SaaS — laundry and grocery on one core.',
+    description:
+      'A multi-vertical SaaS for local businesses on a shared multi-tenant core: Laundrin (laundry orders, status tracking, WhatsApp updates, subscriptions) and Warungin (grocery POS, stock, kasbon, reports), each with its own app and landing page, plus a cross-vertical Ops dashboard.',
+    highlights: [
+      'One multi-tenant core powering multiple business verticals',
+      'Laundrin: laundry orders, status tracking, WhatsApp, subscriptions',
+      'Warungin: grocery POS, stock, kasbon, and reporting',
+    ],
+    techStack: ['NestJS', 'Node', 'React', 'Postgres', 'WhatsApp'],
+    status: 'code',
+    platforms: ['web'],
+    images: [],
+    repoUrl: 'https://github.com/irzanaldi/vertical-saas',
+  },
+  {
+    id: 'tele-chatgpt-gemini',
+    title: 'Telegram AI Relay',
+    category: 'Automation',
+    tagline: 'A Telegram bot that chains ChatGPT and Gemini — spec, then build.',
+    description:
+      'A Telegram relay bot: each message goes to ChatGPT to draft a spec, the spec goes to Gemini to build from it, and Gemini’s reply is sent back to the same chat.',
+    highlights: [
+      'ChatGPT drafts a spec from each incoming message',
+      'Gemini builds from the spec',
+      'Reply routed back to the same Telegram chat',
+    ],
+    techStack: ['Python', 'Telegram', 'OpenAI', 'Gemini'],
+    status: 'code',
+    platforms: ['cli'],
+    images: [],
+    repoUrl: 'https://github.com/irzanaldi/tele-chatgpt-gemini',
   },
 ];

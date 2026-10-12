@@ -3,8 +3,8 @@ import { projects } from '@/data/projects';
 const STATUSES = ['live', 'video', 'gallery', 'code', 'prototype'];
 
 test('11 personal projects, unique ids', () => {
-  expect(projects).toHaveLength(11);
-  expect(new Set(projects.map(p => p.id)).size).toBe(11);
+  expect(projects).toHaveLength(13);
+  expect(new Set(projects.map(p => p.id)).size).toBe(13);
 });
 
 test('every project has required fields and a valid status', () => {
