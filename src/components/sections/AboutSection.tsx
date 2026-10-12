@@ -18,15 +18,17 @@ function Portrait() {
       className="relative aspect-[4/5] w-full max-w-[260px] overflow-hidden rounded-2xl border border-[var(--line)]"
       style={{ background: 'linear-gradient(150deg, var(--surface2), var(--bg2))' }}
     >
-      <span className="absolute inset-0 grid place-items-center font-[family-name:var(--font-mono)] text-[.74rem] text-[var(--faint)]">
-        your photo
-      </span>
+      {broken && (
+        <span className="absolute inset-0 grid place-items-center font-[family-name:var(--font-mono)] text-[.74rem] text-[var(--faint)]">
+          your photo
+        </span>
+      )}
       {!broken && (
         // eslint-disable-next-line @next/next/no-img-element -- plain img so the onError fallback works without a loader
         <img
-          src="/portrait.jpg"
+          src="/portrait.png"
           alt="Irzan Aldi Ananto"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-top"
           onError={() => setBroken(true)}
         />
       )}
@@ -77,7 +79,7 @@ export function AboutSection() {
           <p className="text-[1.18rem] leading-[1.7]">
             Senior Fullstack Developer with 5+ years building end-to-end applications for retail &amp; e-commerce — taking vague user pain points all the way through backend, frontend and database to production.{' '}
             <span className="text-[var(--muted)]">
-              Specialized in microservices and event-driven architecture across an 11-service ecosystem (Kafka, Redis), data warehousing and ETL, and real-time systems. Hands-on with NestJS, Next.js, Laravel, Vue.js, Go, Python and Flutter, in an AI-augmented workflow. Off the clock I build across security, finance and media — the eleven projects below.
+              Specialized in microservices and event-driven architecture across an 11-service ecosystem (Kafka, Redis), data warehousing and ETL, and real-time systems. Hands-on with NestJS, Next.js, Laravel, Vue.js, Go, Python and Flutter, in an AI-augmented workflow. Off the clock I build across security, finance and media — the projects below.
             </span>
           </p>
         </div>
