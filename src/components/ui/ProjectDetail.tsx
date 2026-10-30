@@ -60,7 +60,15 @@ function HeroMedia({ project }: { project: Project }) {
       );
     }
     return (
-      <video controls src={media.url} className="aspect-video w-full rounded-xl border border-[var(--line)] bg-[var(--bg2)]" />
+      <div className="flex justify-center">
+        <video
+          controls
+          playsInline
+          poster={project.images?.[0]}
+          src={media.url}
+          className="max-h-[80vh] max-w-full rounded-xl border border-[var(--line)] bg-black"
+        />
+      </div>
     );
   }
 
